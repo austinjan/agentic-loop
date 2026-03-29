@@ -58,7 +58,15 @@ User Task / 使用者任務
 ```bash
 git clone https://github.com/austinjan/agentic-loop.git
 cd agentic-loop
-pip install -r requirements.txt
+
+# Using uv (recommended) / 使用 uv（推薦）
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install -r requirements.txt
+
+# Or using pip / 或使用 pip
+# pip install -r requirements.txt
+
 cp .env.example .env
 # Edit .env and add your Gemini API key
 # 編輯 .env 並加入你的 Gemini API 金鑰
@@ -68,7 +76,14 @@ Run any example:
 
 ```bash
 python examples/01_basic_call.py
+
+# Or with uv (no need to activate venv) / 或使用 uv（不需啟動虛擬環境）
+uv run python examples/01_basic_call.py
 ```
+
+See [GUIDE.md](GUIDE.md) for detailed walkthrough of each example.
+
+詳細的範例說明請參考 [GUIDE.md](GUIDE.md)。
 
 ## License
 

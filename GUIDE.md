@@ -8,11 +8,43 @@ This guide walks you through each example: how to run it, what to observe in the
 
 ## Prerequisites / 前置準備
 
-```bash
-# 1. Install dependencies / 安裝相依套件
-pip install -r requirements.txt
+### Option A: Using uv (Recommended) / 使用 uv（推薦）
 
-# 2. Set up your API key / 設定 API 金鑰
+[uv](https://docs.astral.sh/uv/) is a fast Python package manager that handles Python versions and virtual environments for you.
+
+[uv](https://docs.astral.sh/uv/) 是一個快速的 Python 套件管理器，能自動處理 Python 版本和虛擬環境。
+
+```bash
+# Install uv (if not already installed) / 安裝 uv（如果尚未安裝）
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create a virtual environment with Python 3.12 / 建立 Python 3.12 虛擬環境
+uv venv --python 3.12
+
+# Activate the virtual environment / 啟動虛擬環境
+source .venv/bin/activate
+
+# Install dependencies / 安裝相依套件
+uv pip install -r requirements.txt
+```
+
+Or run any example directly without activating the venv:
+
+或者不啟動虛擬環境，直接執行任何範例：
+
+```bash
+uv run python examples/01_basic_call.py
+```
+
+### Option B: Using pip / 使用 pip
+
+```bash
+pip install -r requirements.txt
+```
+
+### Set up your API key / 設定 API 金鑰
+
+```bash
 cp .env.example .env
 # Edit .env and paste your Gemini API key
 # 編輯 .env 並貼上你的 Gemini API 金鑰
