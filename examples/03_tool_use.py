@@ -41,20 +41,20 @@ def calculate(expression: str) -> str:
 
 # Define the tool schema for Gemini
 # 為 Gemini 定義工具結構描述
-calculator_declaration = {
-    "name": "calculate",
-    "description": "Evaluate a math expression. Examples: '2 + 3', '15 * 0.15', '100 / 4'. Returns the numeric result.",
-    "parameters": {
-        "type": "object",
-        "properties": {
-            "expression": {
-                "type": "string",
-                "description": "The math expression to evaluate, e.g. '2 + 3 * 4'",
-            },
+calculator_declaration = types.FunctionDeclaration(
+    name="calculate",
+    description="Evaluate a math expression. Examples: '2 + 3', '15 * 0.15', '100 / 4'. Returns the numeric result.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "expression": types.Schema(
+                type=types.Type.STRING,
+                description="The math expression to evaluate, e.g. '2 + 3 * 4'",
+            ),
         },
-        "required": ["expression"],
-    },
-}
+        required=["expression"],
+    ),
+)
 
 
 # Map of tool names to their implementations
@@ -79,7 +79,9 @@ def run_agent(task: str):
         tools=[tools],
         # Disable automatic function calling so we control the loop
         # 停用自動函式呼叫，讓我們控制循環
-        automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
+        automatic_function_calling=types.AutomaticFunctionCallingConfig(
+            disable=True,
+        ),
     )
 
     contents = [
@@ -106,7 +108,8 @@ def run_agent(task: str):
         if response.function_calls:
             # Append the model's response (contains the function call)
             # 加入模型的回應（包含函式呼叫）
-            contents.append(response.candidates[0].content)
+            if response.candidates and response.candidates[0].content:
+                contents.append(response.candidates[0].content)
 
             # Process each function call
             # 處理每個函式呼叫

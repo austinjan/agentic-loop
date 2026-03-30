@@ -7,6 +7,7 @@ Send a single prompt to Gemini and print the response.
 """
 
 import os
+
 from dotenv import load_dotenv
 from google import genai
 
@@ -20,7 +21,7 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # The model to use for generation
 # 用於生成的模型
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-3.1-flash-lite-preview"
 
 
 def main():

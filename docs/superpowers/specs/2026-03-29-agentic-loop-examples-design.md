@@ -108,7 +108,7 @@ if __name__ == "__main__":
 - **Print statements** show each loop step: `[Think]`, `[Tool Call]`, `[Tool Result]`, `[Done]` — so learners can follow execution in the terminal.
 - **Inline comments explain *why*, not *what*** — the code should be self-explanatory.
 - **Each file readable top-to-bottom in under 5 minutes.**
-
+- **Keep everything simple and clear:** Ensure every function name is clear and descriptive.
 ## Companion Documents
 
 Each example has a `.md` file with the same number prefix. Template:
