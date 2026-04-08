@@ -118,6 +118,24 @@ tool_functions = {
 }
 
 
+def _format_contents(contents):
+    """Format the contents list for display. / 格式化 contents 以供顯示。"""
+    formatted = []
+    for c in contents:
+        role = c.role
+        parts_summary = []
+        for p in c.parts:
+            if p.text:
+                text_preview = p.text[:80] + ("..." if len(p.text) > 80 else "")
+                parts_summary.append(f"text={text_preview!r}")
+            elif p.function_call:
+                parts_summary.append(f"function_call={p.function_call.name}({dict(p.function_call.args)})")
+            elif p.function_response:
+                parts_summary.append(f"function_response={p.function_response.name}")
+        formatted.append(f"  {{role={role!r}, parts=[{', '.join(parts_summary)}]}}")
+    return "[\n" + "\n".join(formatted) + "\n]"
+
+
 def process_tool_calls(response, contents, config):
     """
     Handle the tool-call loop for a single user turn.
@@ -161,6 +179,7 @@ def process_tool_calls(response, contents, config):
 
         # Get next response (may contain more tool calls or final text)
         # 取得下一個回應（可能包含更多工具呼叫或最終文字）
+        print(f"  [API Request] model={MODEL}, contents={_format_contents(contents)}")
         response = client.models.generate_content(
             model=MODEL,
             contents=contents,
@@ -221,6 +240,7 @@ Be concise in your responses."""
 
         # Get response from Gemini
         # 從 Gemini 取得回應
+        print(f"[API Request] model={MODEL}, contents={_format_contents(contents)}")
         response = client.models.generate_content(
             model=MODEL,
             contents=contents,

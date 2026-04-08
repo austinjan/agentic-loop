@@ -32,6 +32,10 @@ def main():
     print(f"[Prompt] {prompt}")
     print("-" * 40)
 
+    # Show the actual API payload
+    # 顯示實際發送的 API 內容
+    print(f"[API Request] model={MODEL}, contents={prompt!r}")
+
     # Send the prompt to Gemini and get the response
     # 發送提示給 Gemini 並取得回應
     response = client.models.generate_content(

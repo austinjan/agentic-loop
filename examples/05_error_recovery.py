@@ -7,6 +7,7 @@ Handle tool failures gracefully — the agent detects errors and adjusts its app
 """
 
 import os
+
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -17,7 +18,7 @@ load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-3.1-pro-preview"
 MAX_ITERATIONS = 15
 
 SANDBOX_DIR = os.path.join(os.path.dirname(__file__), "sandbox")
@@ -25,6 +26,7 @@ SANDBOX_DIR = os.path.join(os.path.dirname(__file__), "sandbox")
 
 # --- Tool definitions ---
 # --- 工具定義 ---
+
 
 def calculate(expression: str) -> str:
     """
@@ -127,6 +129,26 @@ tool_functions = {
 }
 
 
+def _format_contents(contents):
+    """Format the contents list for display. / 格式化 contents 以供顯示。"""
+    formatted = []
+    for c in contents:
+        role = c.role
+        parts_summary = []
+        for p in c.parts:
+            if p.text:
+                text_preview = p.text[:80] + ("..." if len(p.text) > 80 else "")
+                parts_summary.append(f"text={text_preview!r}")
+            elif p.function_call:
+                parts_summary.append(
+                    f"function_call={p.function_call.name}({dict(p.function_call.args)})"
+                )
+            elif p.function_response:
+                parts_summary.append(f"function_response={p.function_response.name}")
+        formatted.append(f"  {{role={role!r}, parts=[{', '.join(parts_summary)}]}}")
+    return "[\n" + "\n".join(formatted) + "\n]"
+
+
 def run_agent(task: str):
     """
     Run the agentic loop with error recovery.
@@ -164,7 +186,7 @@ Always explain your reasoning before and after using tools."""
     for i in range(MAX_ITERATIONS):
         print(f"\n--- Iteration {i + 1} ---")
 
-        print("[Think] Asking Gemini...")
+        print(f"[API Request] model={MODEL}, contents={_format_contents(contents)}")
         response = client.models.generate_content(
             model=MODEL,
             contents=contents,
@@ -199,9 +221,7 @@ Always explain your reasoning before and after using tools."""
 
             # Observe: send results back (including errors)
             # 觀察：將結果發送回去（包括錯誤）
-            contents.append(
-                types.Content(role="user", parts=function_response_parts)
-            )
+            contents.append(types.Content(role="user", parts=function_response_parts))
 
         else:
             print(f"\n[Done] {response.text}")
@@ -218,8 +238,7 @@ def main():
     # 代理應該失敗、發現正確名稱並恢復
     task = (
         "Read the file called 'people.csv' from the sandbox and tell me "
-        "the names of everyone listed. If that file doesn't exist, look "
-        "for similar files and try those instead."
+        "the names of everyone listed"
     )
     run_agent(task)
 

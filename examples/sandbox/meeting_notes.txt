@@ -1,0 +1,98 @@
+Product Team Meeting Notes
+===========================
+Date: 2025-12-15
+Attendees: David Huang, Hana Kim, James Wu, Yuki Sato, Lisa Wang
+
+Agenda
+-------
+1. Q1 2026 roadmap review
+2. Mobile SDK progress update
+3. Customer feedback triage
+4. Technical debt discussion
+
+1. Q1 2026 Roadmap Review
+---------------------------
+David presented the Q1 roadmap. Key priorities:
+
+Priority 1 — Mobile SDK (target: end of February)
+  - iOS and Android native SDKs
+  - Must support offline mode for field sales teams
+  - Hana is leading the iOS implementation
+  - Yuki is handling Android
+  - James will build the shared API layer
+  - Risk: push notification integration depends on third-party vendor timeline
+
+Priority 2 — Workflow Automation (target: end of March)
+  - Visual workflow builder for non-technical users
+  - Trigger-action model: "when X happens, do Y"
+  - Initial triggers: new customer signup, deal closed, support ticket created
+  - Initial actions: send email, create task, update CRM field
+  - David will architect the event bus; James will implement executors
+
+Priority 3 — Reporting Module V2
+  - Defer to Q2 based on capacity
+  - Lisa noted strong customer demand — 34 requests in the last quarter
+  - Compromise: ship a "custom date range" filter in Q1 as a quick win
+
+2. Mobile SDK Progress
+------------------------
+Hana shared the current status:
+  - Core data sync: 80% complete
+  - Offline storage: 60% complete
+  - Authentication flow: done
+  - UI components: not started (waiting for design from Lisa's team)
+  - Estimated total completion: 6-7 weeks
+
+Yuki reported Android is ~2 weeks behind iOS due to later start.
+James noted the shared API layer is ready for internal testing.
+
+Blockers:
+  - Design mockups for mobile UI needed by Dec 22
+  - Push notification vendor has not responded to our API access request
+  - Need to decide on minimum OS versions (proposed: iOS 15+, Android 12+)
+
+3. Customer Feedback Triage
+-----------------------------
+Lisa presented the top customer requests from the last quarter:
+
+High priority (affecting >10 customers):
+  - Custom date range in reports (34 requests)
+  - Bulk import/export for contacts (28 requests)
+  - Two-factor authentication (22 requests)
+  - Webhook support for real-time integrations (19 requests)
+  - Dark mode in dashboard (15 requests)
+
+Medium priority:
+  - Multi-language support for email templates (8 requests)
+  - API rate limit increase for enterprise tier (7 requests)
+  - Custom fields in customer profiles (6 requests)
+
+Decision: 2FA will be added to Q1 scope (compliance requirement from
+3 enterprise prospects). Bulk import/export deferred to Q2.
+
+4. Technical Debt Discussion
+------------------------------
+David raised concern about growing technical debt:
+
+Critical items:
+  - Database migration scripts are fragile — 2 incidents in Q4
+  - Test coverage dropped to 64% (target: 80%)
+  - Logging is inconsistent across microservices
+  - Three deprecated API endpoints still receiving traffic
+
+James proposed a "tech debt Friday" — every Friday afternoon dedicated
+to addressing technical debt. Team agreed to try this for Q1.
+
+Hana suggested automated migration testing in CI pipeline.
+David will create tickets for the critical items.
+
+Action Items
+-------------
+[ ] Lisa: Deliver mobile UI mockups by Dec 22
+[ ] David: Create tech debt tickets in Linear by Dec 18
+[ ] Hana: Set up automated migration tests by Dec 20
+[ ] Yuki: Evaluate minimum Android version impact by Dec 19
+[ ] James: Share API layer test results with team by Dec 17
+[ ] David: Follow up with push notification vendor by Dec 16
+
+Next Meeting: January 5, 2026

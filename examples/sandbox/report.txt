@@ -1,0 +1,78 @@
+Quarterly Sales Report — Q4 2025
+==================================
+
+Region: Asia Pacific
+Prepared by: Operations Team
+Date: 2025-12-31
+
+Executive Summary
+------------------
+This quarter showed strong growth across all product lines, with total revenue
+reaching $4.2 million, a 23% increase over Q3. The launch of the new analytics
+platform in October drove significant adoption in the enterprise segment.
+
+Revenue Breakdown by Product
+-----------------------------
+1. Core Platform       $1,800,000  (43% of total)
+2. Analytics Add-on    $1,200,000  (29% of total)
+3. API Access          $  720,000  (17% of total)
+4. Support Contracts   $  480,000  (11% of total)
+
+Monthly Trend
+--------------
+October:    $1,150,000
+November:   $1,380,000
+December:   $1,670,000
+
+Key Metrics
+------------
+- New customers acquired: 147
+- Customer churn rate: 2.3% (down from 3.1% in Q3)
+- Average deal size: $28,571
+- Enterprise deals (>$100K): 12
+- Net Promoter Score: 72
+
+Regional Performance
+---------------------
+Taiwan:     $1,450,000  (82 customers)
+Japan:      $1,280,000  (71 customers)
+Korea:      $  890,000  (54 customers)
+Singapore:  $  580,000  (39 customers)
+
+Top Performing Sales Representatives
+--------------------------------------
+1. Sarah Chen      — $620,000  (22 deals closed)
+2. Takeshi Yamada  — $540,000  (18 deals closed)
+3. Min-jun Park    — $480,000  (15 deals closed)
+4. Wei Lin         — $410,000  (20 deals closed)
+5. Aiko Tanaka     — $380,000  (14 deals closed)
+
+Customer Feedback Highlights
+------------------------------
+- "The new analytics dashboard saved our team 10 hours per week."
+- "API response times improved dramatically after the October update."
+- "Support team was responsive and knowledgeable during our migration."
+- "Would love to see more customization options in the reporting module."
+- "Integration with our existing tools was smoother than expected."
+
+Challenges and Risks
+----------------------
+1. Increased competition from local vendors in the Korea market
+2. Currency fluctuation impacting Japan revenue (¥ weakened 4% vs USD)
+3. Two enterprise prospects delayed decisions to Q1 2026
+4. Hiring pipeline for technical support roles remains tight
+
+Q1 2026 Outlook
+-----------------
+- Projected revenue: $4.8M - $5.2M
+- Planned product launches: Mobile SDK, Workflow Automation
+- Target new customers: 160+
+- Expansion into Vietnam and Thailand markets planned
+- Annual customer conference scheduled for March 2026
+
+Notes
+------
+All figures are in USD. Revenue is recognized on an accrual basis.
+Customer count includes only active paying accounts as of quarter end.
+Churn rate is calculated as the percentage of customers lost divided by
+total customers at the start of the quarter.

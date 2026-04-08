@@ -141,6 +141,24 @@ tool_functions = {
 }
 
 
+def _format_contents(contents):
+    """Format the contents list for display. / 格式化 contents 以供顯示。"""
+    formatted = []
+    for c in contents:
+        role = c.role
+        parts_summary = []
+        for p in c.parts:
+            if p.text:
+                text_preview = p.text[:80] + ("..." if len(p.text) > 80 else "")
+                parts_summary.append(f"text={text_preview!r}")
+            elif p.function_call:
+                parts_summary.append(f"function_call={p.function_call.name}({dict(p.function_call.args)})")
+            elif p.function_response:
+                parts_summary.append(f"function_response={p.function_response.name}")
+        formatted.append(f"  {{role={role!r}, parts=[{', '.join(parts_summary)}]}}")
+    return "[\n" + "\n".join(formatted) + "\n]"
+
+
 def run_agent(task: str):
     """
     Run the agentic loop with multiple tools.
@@ -167,7 +185,7 @@ def run_agent(task: str):
 
         # Think: send conversation to Gemini
         # 思考：將對話發送給 Gemini
-        print("[Think] Asking Gemini...")
+        print(f"[API Request] model={MODEL}, contents={_format_contents(contents)}")
         response = client.models.generate_content(
             model=MODEL,
             contents=contents,

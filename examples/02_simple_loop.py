@@ -7,6 +7,7 @@ The core agentic loop — Think, Decide, Repeat — without any tools.
 """
 
 import os
+
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -24,6 +25,26 @@ MODEL = "gemini-2.5-flash"
 # Maximum number of loop iterations to prevent infinite loops
 # 最大循環次數，防止無限循環
 MAX_ITERATIONS = 10
+
+
+def _format_contents(contents):
+    """Format the contents list for display. / 格式化 contents 以供顯示。"""
+    formatted = []
+    for c in contents:
+        role = c.role
+        parts_summary = []
+        for p in c.parts:
+            if p.text:
+                text_preview = p.text[:80] + ("..." if len(p.text) > 80 else "")
+                parts_summary.append(f"text={text_preview!r}")
+            elif p.function_call:
+                parts_summary.append(
+                    f"function_call={p.function_call.name}({dict(p.function_call.args)})"
+                )
+            elif p.function_response:
+                parts_summary.append(f"function_response={p.function_response.name}")
+        formatted.append(f"  {{role={role!r}, parts=[{', '.join(parts_summary)}]}}")
+    return "[\n" + "\n".join(formatted) + "\n]"
 
 
 def run_agent(task: str):
@@ -65,7 +86,7 @@ Do not output "FINAL ANSWER:" until you are fully done reasoning."""
 
         # Think: ask the model to reason about the current state
         # 思考：請模型對目前狀態進行推理
-        print("[Think] Asking Gemini to reason...")
+        print(f"[API Request] model={MODEL}, contents={_format_contents(contents)}")
         response = client.models.generate_content(
             model=MODEL,
             contents=contents,
@@ -90,7 +111,11 @@ Do not output "FINAL ANSWER:" until you are fully done reasoning."""
         contents.append(
             types.Content(
                 role="user",
-                parts=[types.Part(text="Continue your reasoning. If you have reached the final answer, start with 'FINAL ANSWER:'")],
+                parts=[
+                    types.Part(
+                        text="Continue your reasoning. If you have reached the final answer, start with 'FINAL ANSWER:'"
+                    )
+                ],
             )
         )
 
@@ -102,7 +127,7 @@ Do not output "FINAL ANSWER:" until you are fully done reasoning."""
 def main():
     # A task that requires multi-step reasoning
     # 一個需要多步驟推理的任務
-    task = "What is 15% of 280, then add 42 to the result?"
+    task = "畫一個三角形輸出的範例，提供 source code"
     run_agent(task)
 
 

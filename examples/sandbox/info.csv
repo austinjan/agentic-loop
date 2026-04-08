@@ -1,0 +1,20 @@
+id,name,department,title,salary,hire_date,city,performance_score
+101,Sarah Chen,Sales,Senior Account Executive,95000,2021-03-15,Taipei,4.8
+102,Takeshi Yamada,Sales,Account Executive,82000,2022-01-10,Tokyo,4.5
+103,Min-jun Park,Sales,Senior Account Executive,91000,2020-11-22,Seoul,4.6
+104,Wei Lin,Sales,Account Executive,78000,2022-06-01,Taipei,4.2
+105,Aiko Tanaka,Sales,Account Executive,80000,2022-09-15,Tokyo,4.3
+201,James Wu,Engineering,Senior Engineer,120000,2019-05-20,Taipei,4.7
+202,Yuki Sato,Engineering,Engineer,98000,2021-08-01,Tokyo,4.1
+203,Hana Kim,Engineering,Senior Engineer,115000,2020-02-14,Seoul,4.9
+204,David Huang,Engineering,Tech Lead,135000,2018-11-30,Taipei,4.8
+205,Mei-ling Chang,Engineering,Engineer,96000,2023-01-09,Taipei,3.9
+206,Ryu Nakamura,Engineering,Engineer,99000,2022-04-18,Tokyo,4.0
+301,Lisa Wang,Marketing,Marketing Manager,88000,2020-07-12,Taipei,4.4
+302,Kenji Ito,Marketing,Content Specialist,72000,2023-03-01,Tokyo,4.2
+303,Ji-yeon Lee,Marketing,Marketing Analyst,75000,2022-10-20,Seoul,4.1
+401,Amy Tsai,Support,Support Lead,82000,2021-01-15,Taipei,4.6
+402,Haruto Suzuki,Support,Support Engineer,70000,2023-06-12,Tokyo,3.8
+403,Soo-yeon Choi,Support,Support Engineer,71000,2023-02-28,Seoul,4.0
+501,Michael Kuo,Operations,Operations Manager,92000,2019-09-01,Taipei,4.5
+502,Yuna Watanabe,Operations,Operations Analyst,74000,2022-11-14,Tokyo,4.3
