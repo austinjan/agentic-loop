@@ -1,5 +1,7 @@
 # Example 08: Flow Monitor Agent — Implementation Plan
 
+> Base commit: `cee9702`
+
 ## 目標
 建立一個液體流速監控 agent，使用模擬 sensor 資料，以 Bernoulli 方程式即時驗證，異常時呼叫 LLM agent 分析原因。
 
